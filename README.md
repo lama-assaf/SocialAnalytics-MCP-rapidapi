@@ -1,16 +1,5 @@
 <h1 align="center">Social Media Scraper - Custom MCP Server</h1>
 
-<br>
-<p align="center">
-  <img src="https://img.shields.io/badge/python-FFD43B?style=for-the-badge&logo=python&logoColor=306998" alt="Python">
-  <img src="https://img.shields.io/badge/fastmcp-FF6B6B?style=for-the-badge&logo=python&logoColor=white" alt="FastMCP">
-  <img src="https://img.shields.io/badge/rapidapi-7B68EE?style=for-the-badge&logo=rapidapi&logoColor=white" alt="RapidAPI">
-  <img src="https://img.shields.io/badge/linkedin-20B2AA?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn API">
-  <img src="https://img.shields.io/badge/facebook-FF4500?style=for-the-badge&logo=facebook&logoColor=white" alt="Facebook API">
-  <img src="https://img.shields.io/badge/instagram-FF1493?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram API">
-  <img src="https://img.shields.io/badge/google_serper-32CD32?style=for-the-badge&logo=google&logoColor=white" alt="Google Serper API">
-</p>
-<br>
 A comprehensive Model Context Protocol (MCP) server that provides social media scraping capabilities for LinkedIn, Facebook, Instagram, and Google search functionality.
 
 ## What is MCP?
@@ -27,8 +16,6 @@ This server exposes the following tools for an AI assistant to use:
 ## Installation
 
 ### Step 1: Adding MCP to your Python project
-
-We recommend using [uv](https://docs.astral.sh/uv/) to manage your Python projects.
 
 If you haven't created a uv-managed project yet, create one:
 
@@ -63,9 +50,9 @@ uv add httpx python-dotenv fastmcp
 1. **RapidAPI Key**: 
    - Sign up at [RapidAPI](https://rapidapi.com/)
    - Subscribe to the following APIs (Most Important):
-     - Fresh LinkedIn Profile Data
-     - Facebook Scraper3
-     - Instagram Scraper Stable API
+     - LinkedIn Scraper API (Real-time & Fast & Affordable): https://rapidapi.com/karimgreek/api/linkedin-scraper-api-real-time-fast-affordable
+     - Facebook Scraper3: https://rapidapi.com/krasnoludkolo/api/facebook-scraper3
+     - Instagram Scraper Stable API: https://rapidapi.com/thetechguy32744/api/instagram-scraper-stable-api
 
 2. **Google Serper API Key**:
    - Sign up at [Serper.dev](https://serper.dev/)
