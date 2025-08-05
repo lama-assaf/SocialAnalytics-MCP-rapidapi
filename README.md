@@ -1,4 +1,4 @@
-<h1 align="center">Social Media Scraper - Custom MCP Server</h1>
+<h1 align="center">Social Media Scraper - RapidAPI MCP Server</h1>
 
 A comprehensive Model Context Protocol (MCP) server that provides social media scraping capabilities for LinkedIn, Facebook, Instagram, and Google search functionality.
 
@@ -31,57 +31,65 @@ This server exposes comprehensive social media analytics tools for AI assistants
 
 ## Installation
 
-### Step 1: Adding MCP to your Python project
+### Step 1: Clone or Download Project
 
-If you haven't created a uv-managed project yet, create one:
+Clone this repository or download the project files:
 
 ```bash
-uv init custom-mcp-server
-cd custom-mcp-server
+git clone <repository-url>
+cd SocialAnalytics-MCP-rapidapi
 ```
 
-### Step 2: Install MCP Dependencies
+Or download and extract the ZIP file to your desired location.
 
-Then add MCP to your project dependencies:
+### Step 2: Install Dependencies
+
+Install all required dependencies using uv:
 
 ```bash
-uv add "mcp[cli]"
+uv sync
 ```
-This will auto-generate files and folders similar to the project structure mentioned below, also create a .env file to securely store the API keys.
 
-### Step 3: Add Project Code
+This will install all dependencies listed in `pyproject.toml`:
+- `fastmcp>=2.11.0`
+- `httpx>=0.28.1` 
+- `mcp[cli]>=1.9.4`
+- `python-dotenv>=1.1.0`
 
-In the files generated look for main.py and copy paste the code given in main.py (repo).
+### Step 3: Create Environment File
 
-### Step 4: Install Additional Dependencies
+Create a `.env` file in the project root to store your API keys:
 
 ```bash
-uv add httpx python-dotenv fastmcp
+touch .env
 ```
 
 ## Environment Configuration
 
-### Step 1: API Keys Setup
+### Step 1: Get API Keys
 
-1. **RapidAPI Key**: 
-   - Sign up at [RapidAPI](https://rapidapi.com/)
-   - Subscribe to the following APIs (Most Important):
-     - LinkedIn Scraper API (Real-time & Fast & Affordable): https://rapidapi.com/karimgreek/api/linkedin-scraper-api-real-time-fast-affordable
-     - Facebook Scraper3: https://rapidapi.com/krasnoludkolo/api/facebook-scraper3
-     - Instagram Scraper Stable API: https://rapidapi.com/thetechguy32744/api/instagram-scraper-stable-api
+#### RapidAPI Key
+- Sign up at [RapidAPI](https://rapidapi.com/)
+- Subscribe to the following APIs:
+  - **LinkedIn Scraper API**: https://rapidapi.com/karimgreek/api/linkedin-scraper-api-real-time-fast-affordable
+  - **Facebook Scraper API**: https://rapidapi.com/krasnoludkolo/api/facebook-scraper3
+  - **Instagram Scraper API**: https://rapidapi.com/thetechguy32744/api/instagram-scraper-stable-api
+- Copy your RapidAPI key from the dashboard
 
-2. **Google Serper API Key**:
-   - Sign up at [Serper.dev](https://serper.dev/)
-   - Get your API key from the dashboard
+#### Google Serper API Key
+- Sign up at [Serper.dev](https://serper.dev/)
+- Get your API key from the dashboard
 
-### Step 2: Environment Variables
+### Step 2: Configure Environment Variables
 
-Create `.env` file in your project root with the following variables:
+Add your API keys to the `.env` file you created:
 
 ```env
 RAPIDAPI_KEY=your_rapidapi_key_here
 SERPER_API_KEY=your_serper_api_key_here
 ```
+
+**Important**: Never commit your `.env` file to version control. It's already included in `.gitignore`.
 
 ## Usage
 
@@ -229,88 +237,96 @@ curl -X POST "https://google.serper.dev/search" \
 ## Project Structure
 
 ```
-custom-mcp-server/
-├── __pycache__/          # Python bytecode cache (auto-generated)
-├── .venv/                # Virtual environment directory
-├── .env                  # Environment variables (API keys)
-├── .python-version       # Python version specification
-├── main.py               # Main MCP server implementation
+SocialAnalytics-MCP-rapidapi/
+├── docs/                 # API endpoint documentation
+│   ├── LinkedIn_Scraper_API_endpoints.md
+│   ├── Facebook_api_endpoints.md
+│   ├── Instagram_api_enpoints.md
+│   └── (not-used)FreshLinkedInProfile_api_endpoints.md
+├── CLAUDE.md             # Claude Code instructions for this project
+├── Claude_View.png       # Screenshot of Claude Desktop integration
+├── main.py               # Main MCP server implementation (583 lines)
+├── memories.json         # MCP memory storage
 ├── pyproject.toml        # Project configuration and dependencies
 ├── README.md             # Project documentation
-└── uv.lock               # UV lock file for reproducible builds
+├── uv.lock               # UV lock file for reproducible builds
+└── .env                  # Environment variables (API keys) - CREATE THIS
 ```
 
 ## Analytics Data Examples
 
-### Facebook Profile Analytics Response
+### LinkedIn Profile Response (Filtered)
 ```json
 {
-  "profile": {
-    "name": "Tech Company Inc",
-    "followers": "125,432",
-    "likes": "98,765",
-    "about": "Leading technology solutions...",
-    "website": "https://techcompany.com",
-    "category": "Technology Company",
-    "location": "San Francisco, CA",
-    "page_transparency": {
-      "ads_running": true,
-      "created_date": "2018-03-15"
+  "name": "John Doe",
+  "headline": "Senior Software Engineer at TechCorp | AI & ML Specialist",
+  "location": "San Francisco, CA",
+  "connections": "500+",
+  "followers": "1,234",
+  "current_role": {
+    "title": "Senior Software Engineer",
+    "company": "TechCorp",
+    "duration": "2 years 3 months"
+  },
+  "education": {
+    "school": "Stanford University",
+    "degree": "BS Computer Science"
+  },
+  "top_skills": ["Python", "Machine Learning", "AWS", "React", "SQL"]
+}
+```
+
+### Facebook Profile Response (Filtered)
+```json
+{
+  "name": "Tech Company Inc",
+  "likes": "98,765",
+  "followers": "125,432",
+  "about": "Leading technology solutions provider specializing in AI and cloud infrastructure. Founded in 2018, we serve enterprise clients worldwide with cutting-edge software solutions...",
+  "category": "Technology Company",
+  "location": "San Francisco, CA",
+  "page_metrics": {
+    "checkins": 1243,
+    "rating": 4.8,
+    "review_count": 567
+  }
+}
+```
+
+### Instagram Profile Response (Filtered)
+```json
+{
+  "username": "tech_influencer",
+  "full_name": "Tech Innovator",
+  "biography": "AI & Tech Trends | 100K+ followers | Sharing the latest in technology and innovation | Speaker & Consultant",
+  "followers": 156789,
+  "following": 892,
+  "posts_count": 1247,
+  "is_verified": true,
+  "engagement_rate": "4.2%",
+  "avg_likes": 6543
+}
+```
+
+### LinkedIn Posts Response (Filtered - Max 5 Posts)
+```json
+{
+  "posts": [
+    {
+      "content": "Excited to share our Q4 results! Our AI platform has processed over 10M transactions this quarter, helping businesses reduce costs by 30%. The future of automation is here and we're leading the charge...",
+      "likes": 142,
+      "comments": 23,
+      "shares": 12,
+      "reactions": {"like": 100, "celebrate": 42},
+      "date": "2024-01-15",
+      "author": {
+        "name": "John Doe",
+        "title": "CEO at TechCorp"
+      }
     }
-  },
-  "engagement_metrics": {
-    "average_post_engagement": "2.3%",
-    "post_frequency": "Daily",
-    "audience_demographics": "Tech professionals, 25-45 years"
-  }
-}
-```
-
-### Instagram Profile Analytics Response
-```json
-{
-  "profile": {
-    "username": "tech_influencer",
-    "display_name": "Tech Innovator",
-    "bio": "AI & Tech Trends | 100K+ followers",
-    "followers": 156789,
-    "following": 892,
-    "posts": 1247,
-    "verified": true,
-    "profile_pic_url": "https://...",
-    "external_url": "https://techblog.com"
-  },
-  "analytics": {
-    "engagement_rate": "4.2%",
-    "avg_likes_per_post": 6543,
-    "avg_comments_per_post": 234,
-    "posting_frequency": "3-4 times per week",
-    "top_hashtags": ["#AI", "#tech", "#innovation"]
-  }
-}
-```
-
-### LinkedIn Content Analytics Response
-```json
-{
-  "post_data": {
-    "content": "Excited to share our Q4 results...",
-    "reactions": {
-      "total": 1842,
-      "likes": 1234,
-      "celebrates": 456,
-      "insights": 152
-    },
-    "comments": 89,
-    "shares": 234,
-    "engagement_rate": "5.7%",
-    "reach": "32,456 impressions"
-  },
-  "audience_insights": {
-    "top_industries": ["Technology", "Finance", "Consulting"],
-    "seniority_levels": ["Manager", "Director", "VP"],
-    "company_sizes": ["1001-5000", "5001-10000"]
-  }
+  ],
+  "total_posts_available": 47,
+  "posts_returned": 5
 }
 ```
 
